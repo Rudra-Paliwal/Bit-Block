@@ -7,7 +7,7 @@ All encryption happens **locally** using the **Web Crypto API (AES-GCM + PBKDF2)
 
 ## 🚀 Live Demo
 
-👉 
+👉 https://rudra-paliwal.github.io/Bit-Block/
 
 *(No backend — safe to use even offline)*
 
