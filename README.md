@@ -1,13 +1,13 @@
-# 🔐 Bit-Lock v2 — Client-Side Encryption Tool
+# 🔐 Bit-Block v2 — Client-Side Encryption Tool
 
-**Bit-Lock** is a lightweight, no-backend encryption web app that lets users securely **encrypt and decrypt text or files directly in the browser** — with **zero data sent to any server**.  
+**Bit-Block** is a lightweight, no-backend encryption web app that lets users securely **encrypt and decrypt text or files directly in the browser** — with **zero data sent to any server**.  
 All encryption happens **locally** using the **Web Crypto API (AES-GCM + PBKDF2)** ensuring full privacy and security.
 
 ---
 
 ## 🚀 Live Demo
 
-👉 [bit-lock.netlify.app](https://bit-lock.netlify.app)
+👉 
 
 *(No backend — safe to use even offline)*
 
@@ -95,7 +95,7 @@ Each encrypted file produces a JSON package like:
 
 ## 🧠 Goals
 
-> Bit-Lock aims to make encryption **accessible, transparent, and safe** for non-technical users —  
+> Bit-Block aims to make encryption **accessible, transparent, and safe** for non-technical users —  
 > giving them a simple interface to secure their private data without trusting external servers.
 
 ---
@@ -104,20 +104,14 @@ Each encrypted file produces a JSON package like:
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/rishitapardeshi/bit-lock-v2.git
-   cd bit-lock-v2
+   git clone https://github.com/rishitapardeshi/Bit-Block-v2.git
+   cd Bit-Block-v2
    ```
 
 2. Run locally by opening `index.html` or `file.html` in your browser.
 
 3. (Optional) Deploy on Netlify / GitHub Pages for instant hosting.
 
----
-
-## 🧑‍💻 Author
-
-**Developed by:** Rishita Pardeshi  
-🌐 GitHub: [github.com/rishitapardeshi](https://github.com/rishitapardeshi)
 
 ---
 
