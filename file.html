@@ -1,1 +1,88 @@
+<html>
+  <head>
+      <title>Secure File Encrypt/Decrypt</title>
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <body>
+  <div class="wrap">
+    <header>
+      <div class="header-main">
+        <div>
+          <div class="title">🔐 Secure Encrypt/Decrypt</div>
+          <div class="tagline">Client-side AES-GCM encryption.</div>
+        </div>
+        <div class="badge">v1.04.0.0</div>
+      </div>
+      <nav>
+        <a href="index.html">Text Encryption</a>
+        <a href="file.html" class="active">File Encryption</a>
+      </nav>
+    </header>
 
+    <div class="grid">
+      <section class="card">
+        <h3>File Encryption</h3>
+
+        <div class="label">Choose file</div>
+        <div class="filebox">
+          <input id="file" type="file" />
+          <div class="hint small">Select the file you want to encrypt or the `.secure.json` file produced earlier to decrypt.</div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="label" style="margin-top:10px">Passphrase</div>
+        <input id="fpass" type="password" placeholder="Enter strong passphrase" autocomplete="new-password" />
+
+        <div class="label" style="margin-top:10px">Iterations (PBKDF2)</div>
+        <input id="fiters" type="number" min="10000" step="1000" value="250000" style="width:100%" max="10000000" />
+
+        <div class="row" style="margin-top:10px">
+          <label class="switch"><input id="showPass" type="checkbox"/> Show passphrase</label>
+        </div>
+
+        <div class="row" style="margin-top:10px">
+          <button class="btn acc" id="btnEncFile">Encrypt File</button>
+          <button class="btn ok" id="btnDecFile">Decrypt File</button>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="label">Status</div>
+        <div id="fstatus" class="out small mono" style="min-height:48px; padding:10px;">No operation yet.</div>
+
+        <div class="footer" style="margin-top:12px">Files are exported/imported as JSON packages: <span class="mono">{ filename, v, alg:"AES-GCM", salt, iv, iters, ct }</span></div>
+      </section>
+
+      <div class="info-column">
+        <section class="card">
+          <h3>How it works</h3>
+          <ol class="how-to-list">
+            <li>Select a file from your device.</li>
+            <li>Enter a strong passphrase and (optionally) increase iterations.</li>
+            <li>Click <strong>Encrypt File</strong> to produce a downloadable <code>.secure.json</code>.</li>
+            <li>To decrypt, choose the produced <code>.secure.json</code>, enter the same passphrase, and click <strong>Decrypt File</strong>.</li>
+          </ol>
+        </section>
+
+        <section class="card">
+          <h3>Security reminders</h3>
+          <ul>
+            <li>Everything runs locally in your browser; file contents never leave your machine.</li>
+            <li>Use a strong passphrase and store it securely — losing it means losing access to the file.</li>
+            <li>Iterations default to 250,000 — raise it for more CPU-hardness if needed.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <section class="center" style="margin-top:10px">
+      <span class="small">© 2025 Bit-Block • Licensed • No commercial use without permission. No derivatives.</span>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+
+  </body>
+</html>
