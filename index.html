@@ -1,1 +1,92 @@
+<html>
+  <head>
+    <title>Secure Text Encrypt/Decrypt</title>
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+    <div class="header-main">
+        <div>
+          <div class="title">🔐 Secure Encrypt/Decrypt</div>
+          <div class="tagline">Client-side AES-GCM encryption.</div>
+        </div>
+        <div class="badge">v1.04.0.0</div>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Text Encryption</a>
+        <a href="file.html">File Encryption</a>
+      </nav>
+   </header>
+    <div class="grid">
+      <section class="card">
+        <h3>Text Encryption</h3>
 
+        <div class="label">Plaintext</div>
+        <textarea id="plain" class="mono" placeholder="Type text to encrypt…"></textarea>
+        <div class="row" style="margin-top:10px">
+          <button class="btn ghost" id="btnClear">Clear</button>
+          <button class="btn" id="btnCopyPlain">Copy Plaintext</button>
+        </div>
+
+        <div class="hr"></div>
+        
+        <div>
+          <div class="label">Passphrase</div>
+          <input id="pass" type="password" placeholder="Enter strong passphrase" autocomplete="new-password" />
+        </div>
+        
+        <div class="label" style="margin-top:10px">Iterations (PBKDF2)</div>
+        <input id="iters" type="number" min="10000" step="1000" value="250000" style="width:100%" max="10000000" />
+        
+        <div class="row" style="margin-top:10px">
+          <label class="switch"><input id="showPass" type="checkbox"/> Show passphrase</label>
+        </div>
+
+        <div class="row" style="margin-top:10px">
+          <button class="btn acc" id="btnEncText">Encrypt Text</button>
+          <button class="btn ok" id="btnDecText">Decrypt Text</button>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="label">Output</div>
+        <div class="out small mono" id="out"></div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" id="btnCopy">Copy Output</button>
+          <button class="btn" id="btnDownloadJson">Download Output (.json)</button>
+        </div>
+        <div class="footer">Format: <span class="mono">{ v, alg:"AES-GCM", salt, iv, iters, ct }</span> — base64 fields.</div>
+      </section>
+
+      <div class="info-column">
+        <section class="card">
+          <h3>How to Use</h3>
+          <ol class="how-to-list">
+            <li>Type or paste your secret text into the "Plaintext" area.</li>
+            <li>Enter a strong, memorable passphrase.</li>
+            <li>Set the iterations (250k is a good default).</li>
+            <li>Click <strong>Encrypt Text</strong>.</li>
+            <li>Copy or download the resulting "Output" JSON.</li>
+            <li>To decrypt, paste the JSON into "Output", enter the *exact* same passphrase, and click <strong>Decrypt Text</strong>.</li>
+          </ol>
+        </section>
+        <section class="card">
+          <h3>Security Notes</h3>
+          <ul>
+            <li>Uses <span class="mono">window.crypto.subtle</span> with <strong>AES‑GCM 256‑bit</strong>.</li>
+            <li><strong>PBKDF2‑SHA‑256</strong> key derivation with a random salt.</li>
+            <li>Everything runs entirely in your browser.</li>
+            <li>Set iterations higher for more security.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <section class="center" style="margin-top:10px">
+      <span class="small">© 2025 Bit-Block • Licensed • No commercial use without permission. No derivatives.</span>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+  </body>
+</html>
