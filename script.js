@@ -101,30 +101,31 @@ if (btnEncText) {
       setBusy(false, textButtons);
     }
   };
-  btnDecText.onclick = async () => {
-    const pass = passEl.value;
-    if (!pass) {
-      flash('Enter a passphrase.', 'error');
-      return;
-    }
-    let pkg;
-    try {
-      pkg = JSON.parse(outEl.textContent.trim());
-    } catch (e) {
-      flash('Output is not valid JSON package.', 'error');
-      return;
-    }
-    setBusy(true, textButtons, 'Decrypting…');
-    try {
-      const pt = await decryptToBytes(pkg, pass);
-      outEl.value = dec.decode(pt);
-      flash('Decryption successful!', 'success');
-    } catch (e) {
-      flash(e.message, 'error');
-    } finally {
-      setBusy(false, textButtons);
-    }
-  };
+btnDecText.onclick = async () => {
+  const pass = passEl.value;
+  if (!pass) {
+    flash('Enter a passphrase.', 'error');
+    return;
+  }
+  let pkg;
+  try {
+    pkg = JSON.parse(outEl.textContent.trim());
+  } catch (e) {
+    flash('Output is not valid JSON package.', 'error');
+    return;
+  }
+  setBusy(true, textButtons, 'Decrypting…');
+  try {
+    const pt = await decryptToBytes(pkg, pass);
+    plainEl.value = '';
+    outEl.textContent = dec.decode(pt);
+    flash('Decryption successful!', 'success');
+  } catch (e) {
+    flash(e.message, 'error');
+  } finally {
+    setBusy(false, textButtons);
+  }
+};
   btnCopy.onclick = async () => {
     if (!outEl.textContent) return;
     await navigator.clipboard.writeText(outEl.textContent);
