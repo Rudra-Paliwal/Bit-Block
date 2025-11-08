@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome • Bit-Block</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      background: radial-gradient(circle at center, #0a0f1f 0%, #000 100%);
+      color: #fff;
+    }
+
+    canvas#cyber-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(0,255,204,0.05));
+    }
+
+    .glow1, .glow2 {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      z-index: 0;
+      animation: float 10s ease-in-out infinite alternate;
+    }
+    .glow1 {
+      width: 300px;
+      height: 300px;
+      background: #8b5cf6;
+      top: 10%;
+      left: 15%;
+    }
+    .glow2 {
+      width: 350px;
+      height: 350px;
+      background: #00ffcc;
+      bottom: 10%;
+      right: 15%;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0px) scale(1); }
+      to { transform: translateY(60px) scale(1.1); }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="cyber-bg"></canvas>
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="header-main">
+        <div>
+          <div class="title">🔐 Welcome to <span style="color:#8b5cf6;">Bit-Block</span></div>
+          <div class="tagline">Client-side AES-GCM encryption suite</div>
+        </div>
+        <div class="badge">v1.04.0.0</div>
+      </div>
+    </header>
+
+    <div class="grid" style="display:flex; justify-content:center; align-items:center; min-height:60vh;">
+      <section class="card" style="text-align:center; max-width:600px;">
+        <h2>Welcome to <span style="color:#8b5cf6;">Bit-Block</span></h2>
+        <p class="small" style="margin-bottom:20px;">
+          Your secure, offline, browser-based encryption tool for text and files.<br>
+          Everything runs locally — your data never leaves your device.
+        </p>
+
+        <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px;">
+          <a href="index.html"><button class="btn acc">📝 Text Encryption</button></a>
+          <a href="file.html"><button class="btn ok">📂 File Encryption</button></a>
+        </div>
+
+        <div class="hr" style="margin:30px 0;"></div>
+
+        <p class="small" style="color:#9ca3af;">
+          Start by selecting an encryption type above.<br>
+          Bit-Block ensures full client-side AES-256-GCM protection with PBKDF2 key derivation.
+        </p>
+      </section>
+    </div>
+
+    <section class="center" style="margin-top:10px;">
+      <span class="small">© 2025 Bit-Block • Licensed • Personal & educational use only.</span>
+    </section>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('cyber-bg');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    const nodes = [];
+    const numNodes = 65;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Node {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+      }
+      move() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+      }
+    }
+
+    for (let i = 0; i < numNodes; i++) nodes.push(new Node());
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#8b5cf6";
+      nodes.forEach(n => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      for (let i = 0; i < numNodes; i++) {
+        for (let j = i + 1; j < numNodes; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            const alpha = 1 - dist / 120;
+            ctx.strokeStyle = `rgba(0,255,204,${alpha * 0.3})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach(n => n.move());
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
