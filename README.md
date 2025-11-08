@@ -11,7 +11,7 @@ All encryption happens **locally** using the **Web Crypto API (AES-GCM + PBKDF2)
 
 *(No backend — safe to use even offline)*
 
----
+------------------------------------------------------
 
 ## ✨ Features
 
