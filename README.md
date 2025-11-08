@@ -1,4 +1,4 @@
-# 🔐 Bit-Block v2 — Client-Side Encryption Tool
+# 🔐 Bit-Block v2 — Client-Side Encryption Tool 
 
 **Bit-Block** is a lightweight, no-backend encryption web app that lets users securely **encrypt and decrypt text or files directly in the browser** — with **zero data sent to any server**.  
 All encryption happens **locally** using the **Web Crypto API (AES-GCM + PBKDF2)** ensuring full privacy and security.
