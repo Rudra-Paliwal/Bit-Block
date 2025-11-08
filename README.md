@@ -31,7 +31,7 @@ All encryption happens **locally** using the **Web Crypto API (AES-GCM + PBKDF2)
 |:------|:----------------|
 | Frontend | HTML5, CSS3, JavaScript (Vanilla) |
 | Cryptography | Web Crypto API (AES-GCM, PBKDF2) |
-| Hosting | Netlify (Static) |
+| Hosting | Github (Static) |
 | Design | Minimal responsive grid system |
 
 ---
