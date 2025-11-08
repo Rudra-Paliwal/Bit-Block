@@ -117,7 +117,7 @@ if (btnEncText) {
     setBusy(true, textButtons, 'Decrypting…');
     try {
       const pt = await decryptToBytes(pkg, pass);
-      outEl.textContent = dec.decode(pt);
+      outEl.value = dec.decode(pt);
       flash('Decryption successful!', 'success');
     } catch (e) {
       flash(e.message, 'error');
